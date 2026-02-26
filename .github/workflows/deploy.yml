@@ -1,0 +1,33 @@
+name: Deploy Weather App to AWS
+
+on:
+  push:
+    branches:
+      - main 
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    # Step 1: Grab the latest code from your repository
+    - name: Checkout Code
+      uses: actions/checkout@v4
+
+    # Step 2: Log into AWS using the secrets you saved
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v4
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-east-1 # Change this if your S3 bucket is in a different region
+
+    # Step 3: Delete old files in S3 and upload the new ones
+    - name: Sync files to S3
+      run: |
+        aws s3 sync . s3://${{ secrets.AWS_S3_BUCKET }} --delete --exclude ".git/*" --exclude ".github/*"
+
+    # Step 4: Tell CloudFront to clear its cache
+    - name: Invalidate CloudFront Cache
+      run: |
+        aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_CLOUDFRONT_ID }} --paths "/*"
