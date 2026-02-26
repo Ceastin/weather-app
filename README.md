@@ -5,7 +5,7 @@
 ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
 ![GitHub Actions](https://img.shields.io/badge/github%20actions-%232671E5.svg?style=for-the-badge&logo=githubactions&logoColor=white)
 
-**Live Demo:** [Insert your d12345abcdef.cloudfront.net link here]
+**Live Demo:** https://dmjobm9f4s38w.cloudfront.net/
 
 CloudWeather is a highly available, serverless web application that provides real-time global weather tracking. Built with cloud-native principles, it leverages AWS for edge-optimized content delivery and features a fully automated CI/CD pipeline for zero-downtime deployments.
 
