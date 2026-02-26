@@ -1,6 +1,4 @@
-/* ==========================================================================
-   GLOBAL RESETS & ANIMATED BACKGROUND
-   ========================================================================== */
+/* --- Global Resets & Animated Background --- */
 * {
     margin: 0;
     padding: 0;
@@ -13,13 +11,11 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    /* Animated Gradient Background */
     background: linear-gradient(-45deg, #1e3c72, #2a5298, #11998e, #38ef7d);
     background-size: 400% 400%;
     animation: gradientBG 15s ease infinite;
     color: #fff;
-    /* Fluid padding: smaller on phones, larger on desktop */
-    padding: clamp(10px, 3vw, 20px); 
+    padding: 20px;
 }
 
 @keyframes gradientBG {
@@ -28,13 +24,10 @@ body {
     100% { background-position: 0% 50%; }
 }
 
-/* ==========================================================================
-   MAIN APP CONTAINER (GLASSMORPHISM)
-   ========================================================================== */
+/* --- Glassmorphism UI Container --- */
 .app-wrapper {
     width: 100%;
-    max-width: 1100px; /* Limits max width on ultra-wide monitors */
-    margin: auto;
+    max-width: 1000px;
 }
 
 .glass-panel {
@@ -44,15 +37,13 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 20px;
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-    padding: clamp(15px, 4vw, 35px); /* Fluid padding */
+    padding: 30px;
 }
 
-/* ==========================================================================
-   HEADER & SEARCH BAR
-   ========================================================================== */
+/* --- Header & Search Bar --- */
 header {
     display: flex;
-    flex-direction: column; /* Stack vertically on mobile */
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 25px;
@@ -60,17 +51,16 @@ header {
 }
 
 header h1 {
-    font-size: clamp(1.5rem, 4vw, 2rem);
+    font-size: 1.8rem;
     font-weight: 600;
     text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
-    text-align: center;
 }
 
 .search-box {
     display: flex;
-    gap: 8px;
+    gap: 10px;
     width: 100%;
-    max-width: 500px; /* Prevents it from getting too long on desktop */
+    max-width: 400px;
 }
 
 .search-box input {
@@ -83,33 +73,32 @@ header h1 {
     color: #fff;
     font-size: 1rem;
     box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
-    transition: background 0.3s, box-shadow 0.3s;
+    transition: background 0.3s;
 }
 
 .search-box input::placeholder {
-    color: rgba(255, 255, 255, 0.8);
+    color: rgba(255, 255, 255, 0.7);
 }
 
 .search-box input:focus {
-    background: rgba(255, 255, 255, 0.35);
-    box-shadow: inset 0 2px 5px rgba(0,0,0,0.2), 0 0 10px rgba(255,255,255,0.2);
+    background: rgba(255, 255, 255, 0.3);
 }
 
 .search-box button {
-    background: linear-gradient(135deg, #ff7e5f, #feb47b);
+    background: #ff7e5f;
+    background: linear-gradient(to right, #ff7e5f, #feb47b);
     color: white;
     border: none;
     width: 45px;
     height: 45px;
     border-radius: 50%;
     cursor: pointer;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     box-shadow: 0 4px 15px rgba(0,0,0,0.2);
     transition: transform 0.2s, box-shadow 0.2s;
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-shrink: 0; /* Prevents buttons from squishing on tiny phones */
 }
 
 .search-box button:hover {
@@ -117,44 +106,46 @@ header h1 {
     box-shadow: 0 6px 20px rgba(0,0,0,0.3);
 }
 
-/* ==========================================================================
-   CONTENT GRID (MAP & WEATHER LAYOUT)
-   ========================================================================== */
+/* --- Content Grid (Map + Weather) --- */
 .content-grid {
     display: grid;
-    grid-template-columns: 1fr; /* 1 column (Stacked) for Mobile by default */
-    gap: 25px;
+    grid-template-columns: 1fr;
+    gap: 30px;
 }
 
-/* --- MAP SECTION --- */
+@media (min-width: 850px) {
+    .content-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+/* --- Map Styling --- */
 .map-section {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    width: 100%;
 }
 
 #map {
+    height: 400px;
     width: 100%;
-    height: 300px; /* Fixed height for mobile so it doesn't take up the whole screen */
     border-radius: 15px;
     border: 2px solid rgba(255, 255, 255, 0.4);
     box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-    z-index: 1; /* Keeps Leaflet controls below custom UI */
+    z-index: 1;
 }
 
 .hint {
     font-size: 0.85rem;
-    color: rgba(255, 255, 255, 0.9);
+    color: rgba(255, 255, 255, 0.8);
     text-align: center;
 }
 
-/* --- WEATHER SECTION --- */
+/* --- Weather Results Styling --- */
 .weather-section {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 100%;
 }
 
 .current-weather {
@@ -163,19 +154,17 @@ header h1 {
 }
 
 .current-weather h2 {
-    font-size: clamp(1.8rem, 5vw, 2.5rem); /* Scales with screen size */
-    margin-bottom: -15px;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+    font-size: 2rem;
+    margin-bottom: -10px;
 }
 
 .current-weather img {
-    width: clamp(100px, 15vw, 140px);
-    filter: drop-shadow(0 5px 8px rgba(0,0,0,0.3));
-    margin: 10px 0;
+    width: 120px;
+    filter: drop-shadow(0 5px 5px rgba(0,0,0,0.3));
 }
 
 .temp {
-    font-size: clamp(3rem, 8vw, 4.5rem); /* Massive on desktop, sensible on mobile */
+    font-size: 4rem;
     font-weight: 700;
     line-height: 1;
     margin-bottom: 5px;
@@ -183,16 +172,14 @@ header h1 {
 }
 
 #description {
-    font-size: clamp(1rem, 3vw, 1.2rem);
+    font-size: 1.2rem;
     text-transform: capitalize;
-    color: rgba(255,255,255,0.95);
-    letter-spacing: 1px;
+    color: rgba(255,255,255,0.9);
 }
 
-/* --- WEATHER DETAILS CARDS --- */
+/* Extended Detail Cards */
 .weather-details {
     display: grid;
-    /* Auto-fits to 2 columns on small mobile, 3 columns when space permits */
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
     gap: 15px;
     margin-bottom: 25px;
@@ -200,19 +187,16 @@ header h1 {
 
 .detail-card {
     background: rgba(0, 0, 0, 0.2);
-    padding: 12px;
+    padding: 15px;
     border-radius: 12px;
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 12px;
-    transition: transform 0.3s, background 0.3s;
-    border: 1px solid rgba(255,255,255,0.05);
+    gap: 10px;
+    transition: transform 0.3s;
 }
 
 .detail-card:hover {
-    transform: translateY(-3px);
-    background: rgba(0, 0, 0, 0.3);
+    transform: translateY(-5px);
 }
 
 .detail-card i {
@@ -221,10 +205,8 @@ header h1 {
 }
 
 .detail-card .label {
-    font-size: 0.75rem;
-    color: rgba(255,255,255,0.8);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.7);
 }
 
 .detail-card .value {
@@ -232,11 +214,11 @@ header h1 {
     font-size: 1.1rem;
 }
 
-/* --- 5-DAY FORECAST --- */
+/* Forecast Styling */
 .forecast-title {
     font-size: 1.1rem;
-    margin-bottom: 12px;
-    border-bottom: 1px solid rgba(255,255,255,0.3);
+    margin-bottom: 15px;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
     padding-bottom: 5px;
 }
 
@@ -245,121 +227,62 @@ header h1 {
     justify-content: space-between;
     gap: 10px;
     overflow-x: auto;
-    padding-bottom: 15px;
-    /* Smooth scrolling for touch devices */
-    scroll-behavior: smooth;
-    -webkit-overflow-scrolling: touch;
+    padding-bottom: 10px;
 }
 
-/* Custom Webkit Scrollbar */
-.forecast-container::-webkit-scrollbar { 
-    height: 6px; 
-}
-.forecast-container::-webkit-scrollbar-track { 
-    background: rgba(0,0,0,0.1); 
-    border-radius: 10px; 
-}
-.forecast-container::-webkit-scrollbar-thumb { 
-    background: rgba(255,255,255,0.5); 
-    border-radius: 10px; 
-}
+/* Custom Scrollbar for Forecast */
+.forecast-container::-webkit-scrollbar { height: 6px; }
+.forecast-container::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.4); border-radius: 10px; }
 
 .forecast-card {
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.1);
     min-width: 80px;
-    flex: 1; /* Stretch to fill space if available */
-    padding: 12px 5px;
-    border-radius: 12px;
+    padding: 10px;
+    border-radius: 10px;
     text-align: center;
-    border: 1px solid rgba(255,255,255,0.2);
-    transition: transform 0.2s;
-}
-
-.forecast-card:hover {
-    transform: scale(1.05);
-    background: rgba(255, 255, 255, 0.25);
+    border: 1px solid rgba(255,255,255,0.1);
 }
 
 .forecast-card img {
-    width: 45px;
-    margin: 5px 0;
+    width: 50px;
 }
 
 .forecast-card .f-day {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     font-weight: 600;
-    text-transform: uppercase;
 }
 
 .forecast-card .f-temp {
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 700;
 }
 
-/* ==========================================================================
-   DESKTOP & TABLET MEDIA QUERIES (>= 850px)
-   ========================================================================== */
-@media (min-width: 850px) {
-    /* Header moves to a row layout */
-    header {
-        flex-direction: row;
-        align-items: center;
-    }
-
-    /* Switch to side-by-side layout */
-    .content-grid {
-        grid-template-columns: 1fr 1fr;
-        align-items: stretch; /* Makes map and weather panel match height */
-    }
-
-    /* Map takes up more vertical space */
-    .map-section {
-        height: 100%;
-    }
-
-    #map {
-        height: 100%; /* Fill the grid height */
-        min-height: 450px; /* Ensure it never gets too small */
-    }
-
-    .weather-section {
-        padding-left: 15px;
-    }
-}
-
-/* ==========================================================================
-   UTILITIES & STATES
-   ========================================================================== */
+/* Utilities */
 .hidden { display: none !important; }
 .fade-in { animation: fadeIn 0.5s ease-in; }
 
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(15px); }
+    from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
 .error {
-    background: rgba(255, 0, 0, 0.3);
-    border-left: 5px solid #ff4d4d;
+    background: rgba(255, 0, 0, 0.2);
+    border-left: 4px solid #ff4d4d;
     padding: 15px;
     border-radius: 8px;
     text-align: center;
-    font-weight: 500;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 
 /* Loading Spinner */
 .spinner {
-    border: 4px solid rgba(255, 255, 255, 0.2);
+    border: 4px solid rgba(255, 255, 255, 0.3);
     border-top: 4px solid #fff;
     border-radius: 50%;
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     animation: spin 1s linear infinite;
-    margin: 40px auto;
+    margin: 20px auto;
 }
 
-@keyframes spin { 
-    0% { transform: rotate(0deg); } 
-    100% { transform: rotate(360deg); } 
-}
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
