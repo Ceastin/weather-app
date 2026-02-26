@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cloud Weather Finder Pro</title>
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-wrapper">
+        <div class="glass-panel main-container">
+            
+            <!-- Header & Search -->
+            <header>
+                <h1><i class="fa-solid fa-cloud-sun-rain"></i> WeatherPro</h1>
+                <div class="search-box">
+                    <button id="locationBtn" title="Use My Location"><i class="fa-solid fa-location-crosshairs"></i></button>
+                    <input type="text" id="cityInput" placeholder="Search any city...">
+                    <button id="searchBtn" onclick="getWeatherByCity()"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </div>
+            </header>
+
+            <div class="content-grid">
+                <!-- Map Section -->
+                <div class="map-section">
+                    <div id="map"></div>
+                    <p class="hint"><i class="fa-solid fa-hand-pointer"></i> Click anywhere on the map to get weather!</p>
+                </div>
+
+                <!-- Weather Results Section -->
+                <div class="weather-section">
+                    <!-- Loading / Error States -->
+                    <div id="loader" class="hidden"><div class="spinner"></div></div>
+                    <p id="errorMessage" class="hidden error"><i class="fa-solid fa-circle-exclamation"></i> Location not found. Please try again.</p>
+                    
+                    <!-- Current Weather -->
+                    <div id="weatherResult" class="hidden fade-in">
+                        <div class="current-weather">
+                            <h2 id="cityName">City Name</h2>
+                            <img id="weatherIcon" src="" alt="Weather Icon">
+                            <p id="temperature" class="temp">--°C</p>
+                            <p id="description">Condition</p>
+                        </div>
+
+                        <!-- Extra Details -->
+                        <div class="weather-details">
+                            <div class="detail-card">
+                                <i class="fa-solid fa-temperature-half"></i>
+                                <div>
+                                    <p class="label">Feels Like</p>
+                                    <p id="feelsLike" class="value">--°C</p>
+                                </div>
+                            </div>
+                            <div class="detail-card">
+                                <i class="fa-solid fa-droplet"></i>
+                                <div>
+                                    <p class="label">Humidity</p>
+                                    <p id="humidity" class="value">--%</p>
+                                </div>
+                            </div>
+                            <div class="detail-card">
+                                <i class="fa-solid fa-wind"></i>
+                                <div>
+                                    <p class="label">Wind Speed</p>
+                                    <p id="windSpeed" class="value">-- m/s</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 5 Day Forecast -->
+                        <h3 class="forecast-title">5-Day Forecast</h3>
+                        <div id="forecastContainer" class="forecast-container">
+                            <!-- Forecast cards injected by JS -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
