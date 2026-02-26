@@ -4,12 +4,14 @@
 ![AWS](https://img.shields.io/badge/AWS-%23FF9900.svg?style=for-the-badge&logo=amazon-aws&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
 ![GitHub Actions](https://img.shields.io/badge/github%20actions-%232671E5.svg?style=for-the-badge&logo=githubactions&logoColor=white)
+<img width="1880" height="873" alt="image" src="https://github.com/user-attachments/assets/71045020-c75f-4768-a37f-ed6c6899e02f" />
 
 **Live Demo:** https://dmjobm9f4s38w.cloudfront.net/
 
 CloudWeather is a highly available, serverless web application that provides real-time global weather tracking. Built with cloud-native principles, it leverages AWS for edge-optimized content delivery and features a fully automated CI/CD pipeline for zero-downtime deployments.
 
 
+<img width="1536" height="1024" alt="ChatGPT Image Feb 26, 2026, 09_05_27 PM" src="https://github.com/user-attachments/assets/17489f3e-b46d-4ba5-83fd-f360de5bd54d" />
 
 ## ✨ Features
 * **Interactive Geospatial Map:** Integrated with Leaflet.js and OpenStreetMap to allow users to click anywhere on the globe for instant weather data via latitude/longitude mapping.
